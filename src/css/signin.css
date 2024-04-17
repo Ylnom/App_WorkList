@@ -1,0 +1,142 @@
+.SignIn {
+  max-width: 500px; /* Đặt chiều rộng tối đa của form */
+  width: 100%;
+  margin: 0 auto; /* Căn giữa form */
+  border-radius: 10px; /* Đặt border radius */
+  padding: 20px; /* Đặt phần lề */
+  background-color: #fff; /* Màu nền của form */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng */
+  margin-top: 150px;
+}
+
+
+.form-outline {
+  position: relative;
+}
+
+.form-outline input.form-control {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.form-outline label.form-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  transition: all 0.3s ease;
+  color: #999;
+}
+
+.form-outline input.form-control:focus + label.form-label,
+.form-outline input.form-control:not(:placeholder-shown) + label.form-label {
+  top: -10px;
+  left: 5px;
+  font-size: 12px;
+  color: #333;
+}
+.form-outline input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.form-outline label {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+  color: #6c757d;
+  transition: all 0.25s ease;
+}
+
+.form-outline input:focus + label,
+.form-outline input:not(:placeholder-shown) + label {
+  top: -12px;
+  font-size: 12px;
+  color: #495057;
+  background-color: white;
+  padding: 0 5px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.btn-google {
+  background-color: #dc4e41;
+  border-color: #dc4e41;
+}
+
+.btn-google:hover {
+  background-color: #c53528;
+  border-color: #c53528;
+}
+
+.fgpw a {
+  text-decoration: none;
+}
+
+/* CSS cho phần SignOut */
+.signOut {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+}
+
+.signOut p {
+  margin-right: 10px;
+}
+
+.signOut button {
+  font-size: 25px;
+  border-radius: 5px;
+  color: black;
+}
+
+.signOut button:hover {
+  color: red;
+}
+.btn-primary, .btn-success {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: #fff;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  border-color: #218838;
+}

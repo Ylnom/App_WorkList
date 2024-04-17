@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
-import Todo from './Todo';
-import { db } from './firebase';
+import Todo from './component/Todo';
+import { db } from './config/firebase';
 import {
   query,
   collection,
@@ -28,9 +28,9 @@ function App() {
 
   // Create todo
   const createTodo = async (e) => {
-    e.preventDefault(e);
+    e.preventDefault();
     if (input === '') {
-      alert('Please enter a valid todo');
+      alert('Làm ơn điền vào chỗ trống');
       return;
     }
     await addDoc(collection(db, 'todos'), {
@@ -50,10 +50,10 @@ function App() {
       });
       setTodos(todosArr);
     });
-    return () => unsubscribe();
+    return () => unsubscribe(); 
   }, []);
 
-  // Update todo in firebase
+  // Toggle complete status of todo
   const toggleComplete = async (todo) => {
     await updateDoc(doc(db, 'todos', todo.id), {
       completed: !todo.completed,
@@ -62,37 +62,48 @@ function App() {
 
   // Delete todo
   const deleteTodo = async (id) => {
-    await deleteDoc(doc(db, 'todos', id));
+    const shouldDelete = window.confirm('Bạn có chắc chắn muốn xóa?');
+    if (shouldDelete) {
+      await deleteDoc(doc(db, 'todos', id));
+    }
+  };
+
+  // Edit todo
+  const editTodo = async (id, newText) => {
+    await updateDoc(doc(db, 'todos', id), {
+      text: newText,
+    });
   };
 
   return (
     <div className={style.bg}>
       <div className={style.container}>
-        <h3 className={style.heading}>Todo App</h3>
+        <h3 className={style.heading}>Kế hoạch hôm nay của bạn?</h3>
         <form onSubmit={createTodo} className={style.form}>
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             className={style.input}
             type='text'
-            placeholder='Add Todo'
+            placeholder='Thêm kế hoạch'
           />
           <button className={style.button}>
             <AiOutlinePlus size={30} />
           </button>
         </form>
         <ul>
-          {todos.map((todo, index) => (
+          {todos.map((todo) => (
             <Todo
-              key={index}
+              key={todo.id}
               todo={todo}
               toggleComplete={toggleComplete}
               deleteTodo={deleteTodo}
+              editTodo={editTodo}
             />
           ))}
         </ul>
-        {todos.length < 1 ? null : (
-          <p className={style.count}>{`You have ${todos.length} todos`}</p>
+        {todos.length > 0 && (
+          <p className={style.count}>{`Bạn có ${todos.length} việc cần làm`}</p>
         )}
       </div>
     </div>
